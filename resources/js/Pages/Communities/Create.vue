@@ -26,20 +26,6 @@
                         </div>
     
                         <div class="mt-4">
-                            <InputLabel for="slug" value="Slug" />
-    
-                            <TextInput
-                                id="slug"
-                                type="text"
-                                class="mt-1 block w-full"
-                                v-model="form.slug"
-                                autocomplete="slug"
-                            />
-    
-                            <InputError class="mt-2" :message="form.errors.slug" />
-                        </div>
-    
-                        <div class="mt-4">
                             <InputLabel for="description" value="Description" />
     
                             <TextInput
@@ -76,7 +62,6 @@ import { Head, useForm } from '@inertiajs/vue3';
 const form = useForm({
     name: '',
     description: '',
-    slug: '',
 });
 
 const submit = () => {
