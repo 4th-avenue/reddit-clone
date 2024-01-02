@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Backend\CommunityController;
+use App\Http\Controllers\Backend\CommunityPostController;
 use App\Http\Controllers\Frontend\CommunityController as FrontendCommunityController;
 
 Route::get('/', function () {
@@ -24,6 +25,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     })->name('dashboard');
 
     Route::resource('/dashboard/communities', CommunityController::class);
+    Route::resource('/dashboard/communities.posts', CommunityPostController::class);
 });
 
 Route::middleware('auth')->group(function () {
