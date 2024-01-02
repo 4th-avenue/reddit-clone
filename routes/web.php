@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Backend\CommunityController;
-use App\Http\Controllers\Frontend\SubredditController;
+use App\Http\Controllers\Frontend\CommunityController as FrontendCommunityController;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -16,7 +16,7 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/r/{slug}', [SubredditController::class, 'show'])->name('subreddit.show');
+Route::get('/r/{slug}', [FrontendCommunityController::class, 'show'])->name('subreddit.show');
 
 Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/dashboard', function () {
