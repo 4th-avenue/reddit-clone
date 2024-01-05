@@ -9,7 +9,7 @@
 
         <section class="flex md:flex-row m-2 p-2">
             <div class="w-8/12">
-                <PostCard v-for="post in posts.data" :post="post" :community="community.name" :key="post.id" />
+                <PostCard v-for="post in posts.data" :post="post" :community="community.slug" :key="post.id" />
                 <div class="mt-4 p-2">
                     <Pagination :links="posts.meta.links" />
                 </div>
