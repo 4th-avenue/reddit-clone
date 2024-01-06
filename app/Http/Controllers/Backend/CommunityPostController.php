@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Models\Post;
 use Inertia\Inertia;
 use App\Models\Community;
 use Illuminate\Http\Request;
@@ -26,5 +27,17 @@ class CommunityPostController extends Controller
         ]);
 
         return Redirect::route('frontend.communities.show', $community->slug);
+    }
+
+    public function edit(Community $community, Post $post)
+    {
+        return Inertia::render('Communities/Posts/Edit', compact('community', 'post'));
+    }
+
+    public function update(StorePostRequest $request, Community $community, Post $post)
+    {
+        $post->update($request->validated());
+
+        return Redirect::route('frontend.communities.posts.show', [$community->slug, $post->slug]);
     }
 }
