@@ -15,7 +15,7 @@
                             Posted by 
                             <span class="text-slate-700">{{ post.data.username }}</span>
                         </div>
-                        <div>
+                        <div v-if="$page.props.auth.auth_check && post.data.owner">
                             <Link :href="route('communities.posts.edit', [
                                 community.slug,
                                 post.data.slug,
