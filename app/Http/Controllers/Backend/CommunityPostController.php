@@ -40,4 +40,11 @@ class CommunityPostController extends Controller
 
         return Redirect::route('frontend.communities.posts.show', [$community->slug, $post->slug]);
     }
+
+    public function destroy(Community $community, Post $post)
+    {
+        $post->delete();
+
+        return Redirect::route('frontend.communities.show', $community->slug);
+    }
 }

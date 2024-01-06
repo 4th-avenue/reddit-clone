@@ -23,7 +23,7 @@
                             <Link :href="route('communities.posts.destroy', [
                                 community.slug,
                                 post.data.slug,
-                            ])" class="font-semibold bg-red-500 hover:bg-red-700 rounded-md text-white px-4 py-2">Delete</Link>
+                            ])" class="font-semibold bg-red-500 hover:bg-red-700 rounded-md text-white px-4 py-2" method="delete" as="button" type="button">Delete</Link>
                         </div>
                     </div>
                     <div class="p-2">
