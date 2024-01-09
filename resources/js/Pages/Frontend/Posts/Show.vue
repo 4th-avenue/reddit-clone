@@ -31,6 +31,18 @@
                         <p class="text-slate-700 my-2">{{ post.data.description }}</p>
                         <a :href="post.data.url" class="font-semibold text-blue-500 text-sm hover:text-blue-300">{{ post.data.url }}</a>
                     </div>
+                    <hr>
+                    <div v-if="$page.props.auth.auth_check">
+                        <form class="m-2 p-2 max-w-md" @submit.prevent="submit">
+                            <div class="mt-2">
+                                <label for="comment" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Your comment</label>
+                                <textarea v-model="form.content" id="comment" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border" placeholder="Your comment..."></textarea>
+                            </div>
+                            <div class="mt-2">
+                                <button class="px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white rounded-md">Comment</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
             <div class="w-full md:w-4/12 p-4">
@@ -44,12 +56,18 @@
 
 <script setup>
 import GuestLayout from "@/Layouts/GuestLayout.vue";
-import { Link } from "@inertiajs/vue3";
-import PostCard from "@/Components/PostCard.vue";
-import Pagination from "@/Components/Pagination.vue";
+import { Link, useForm } from "@inertiajs/vue3";
 
-defineProps({
+const props = defineProps({
     community: Object,
     post: Object,
 });
+
+const form = useForm({
+    content: '',
+});
+
+const submit = () => {
+    form.post(route('frontend.posts.comments', [props.community.slug, props.post.data.slug]));
+};
 </script>
