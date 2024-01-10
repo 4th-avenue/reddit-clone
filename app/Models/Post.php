@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Comment;
+use App\Models\PostVote;
 use App\Models\Community;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
@@ -49,5 +50,10 @@ class Post extends Model
     public function community()
     {
         return $this->belongsTo(Community::class);
+    }
+
+    public function postVotes()
+    {
+        return $this->hasMany(PostVote::class);
     }
 }
