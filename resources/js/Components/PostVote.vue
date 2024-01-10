@@ -1,23 +1,16 @@
 <template>
     <div class="w-12 flex flex-col m-2 p-2">
-        <Link :href="route('posts.upVote', post)" method="post" as="button" type="button" class="text-gray-400 hover:text-blue-500">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 10.5 12 3m0 0 7.5 7.5M12 3v18" />
-            </svg>
-        </Link>
-        <div>4k</div>
-        <Link :href="route('posts.downVote', post)" method="post" as="button" type="button" class="text-gray-400 hover:text-red-500">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3" />
-            </svg>
-        </Link>
+        <UpVoteLink :slug="post.slug" />
+        <div class="p-2 my-2 bg-blue-300 rounded-md">{{ post.votes }}</div>
+        <DownVoteLink :slug="post.slug" />
     </div>
 </template>
 
 <script setup>
-import { Link } from "@inertiajs/vue3";
+import UpVoteLink from "./UpVoteLink.vue";
+import DownVoteLink from "./DownVoteLink.vue";
 
 defineProps({
-    post: String,
+    post: Object,
 });
 </script>
