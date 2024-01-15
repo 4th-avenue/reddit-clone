@@ -19,12 +19,12 @@
                                 Posted by 
                                 <span class="text-slate-700">{{ post.data.username }}</span>
                             </div>
-                            <div v-if="$page.props.auth.auth_check && post.data.owner">
-                                <Link :href="route('communities.posts.edit', [
+                            <div v-if="$page.props.auth.auth_check">
+                                <Link v-if="can_update" :href="route('communities.posts.edit', [
                                     community.slug,
                                     post.data.slug,
                                 ])" class="font-semibold bg-blue-500 hover:bg-blue-700 rounded-md text-white px-4 py-2 mr-2">Edit</Link>
-                                <Link :href="route('communities.posts.destroy', [
+                                <Link v-if="can_delete" :href="route('communities.posts.destroy', [
                                     community.slug,
                                     post.data.slug,
                                 ])" class="font-semibold bg-red-500 hover:bg-red-700 rounded-md text-white px-4 py-2" method="delete" as="button" type="button">Delete</Link>
@@ -79,6 +79,8 @@ const props = defineProps({
     community: Object,
     post: Object,
     posts: Object,
+    can_update: Boolean,
+    can_delete: Boolean,
 });
 
 const form = useForm({
