@@ -18,6 +18,7 @@
                             <div>
                                 Posted by 
                                 <span class="text-slate-700">{{ post.data.username }}</span>
+                                {{ post.data.created_at }}
                             </div>
                             <div v-if="$page.props.auth.auth_check">
                                 <Link v-if="can_update" :href="route('communities.posts.edit', [
